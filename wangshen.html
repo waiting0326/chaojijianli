@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/layui.css" />
+    <script type="text/javascript" src="layui.js"></script>
+    <title>校招网申</title>
+</head>
+<style>
+    body {
+        background: #F5F5F7;
+    }
+
+    .max-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-color: #fff;
+        width: 100%;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .main-header {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #404040;
+    }
+
+    .header-logo img {
+        margin-left: 20%;
+        text-align: center;
+        width: 115px;
+        height: 35px;
+    }
+
+    .header-tittle li {
+        float: left;
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+
+    .header-tittle a:hover {
+        color: #ff4f4c;
+    }
+
+    .header-tittle a {
+        display: block;
+        margin-top: 8px;
+    }
+
+    .header-home {
+        display: none;
+    }
+
+    .header-app .app-tubiao div {
+        font-size: 25px;
+        color: #9c9c9c;
+        margin-right: 30px;
+        margin-top: 8px;
+        float: left;
+    }
+
+    .ge a {
+        color: #9c9c9c;
+        display: block;
+        margin-top: -6px;
+        font-size: 30px;
+    }
+
+    .header-app .app-button {
+        float: left;
+    }
+
+    .app-button button:nth-of-type(1) {
+        background-color: #fff;
+        border: 1px solid #ff4f4c;
+    }
+
+    .app-button button:nth-of-type(2) a {
+        color: #fff;
+    }
+
+    .app-button button:nth-of-type(1):hover a {
+        color: #fff;
+    }
+
+    .app-button button:nth-of-type(1):hover {
+        background-color: #ff4f4c;
+    }
+
+    .app-dl a {
+        color: #ff4f4c;
+    }
+
+    .language {
+        text-align: center;
+        position: absolute;
+        z-index: 3;
+        top: 25px;
+        left: -25px;
+        width: 70px;
+        background-color: #fff;
+        border: 1px solid #9c9c9c;
+        box-shadow: 0px 0px 8px #ddd;
+        display: none;
+    }
+
+    .language a {
+        font-size: 15px;
+    }
+
+    .language li:nth-of-type(1) a {
+        color: #ff4f4c;
+    }
+
+    .app-earth:hover .language {
+        display: block;
+    }
+
+    .app-download {
+        text-align: center;
+        position: absolute;
+        z-index: 3;
+        top: 31px;
+        left: -25px;
+        width: 240px;
+        height: 307px;
+        background-color: #fff;
+        border: 1px solid #9c9c9c;
+        box-shadow: 0px 0px 8px #ddd;
+        display: none;
+    }
+
+    .app-download h3 {
+        margin: 20px 0 10px 0;
+        font-size: 14px;
+        color: #404040;
+    }
+
+    .app-download img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .app-download button {
+        padding-bottom: 5px;
+        color: #fff;
+        background-color: #ff4f4c;
+        border: #ff4f4c;
+        width: 160px;
+        height: 35px;
+    }
+
+    .app-download button:nth-of-type(2):hover {
+        color: #fff;
+        background-color: #ff4f4c;
+    }
+
+    .app-download button:nth-of-type(2) {
+        background-color: #fff;
+        color: #ff4f4c;
+        border: 1px solid #ff4f4c;
+    }
+
+    .app-iphone:hover .app-download {
+        display: block;
+    }
+
+    @media screen and (max-width:1000px) {
+        .header-tittle {
+            display: none;
+        }
+
+        .header-home {
+            display: block;
+        }
+
+        .home-icon {
+            padding-left: 50px;
+            font-size: 30px;
+        }
+
+        .home-icon ul {
+            background: #fff;
+            width: 100%;
+            position: absolute;
+        }
+
+        .home-icon li {
+            text-align: center;
+            padding: 5px 5px 5px 5px;
+            font-size: 18px;
+            border-bottom: 1px solid #9b9b9b;
+            display: none;
+        }
+
+        .home-icon li:nth-of-type(5) {
+            border-bottom: none;
+        }
+
+        .home-icon li:hover {
+            border-left: 5px solid #ff4f4c;
+        }
+
+        .home-icon a:hover {
+            color: #ff4f4c;
+        }
+
+        .home-icon a {
+            color: #9b9b9b;
+        }
+
+        .home-icon:hover .home-ul>li {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width:750px) {
+        .app-tubiao {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width:500px) {
+        .header-home {
+            display: none;
+        }
+
+        .app-button {
+            margin-left: 30px;
+        }
+    }
+
+    .bian {
+        height: 120px;
+        ;
+        border: 1px solid #ececec;
+    }
+
+
+    .huiyuan {
+        padding: 18px;
+    }
+
+    .huiyuan a {
+        color: #404040;
+        margin-left: 15px;
+    }
+
+    .zuixin {
+        height: 800px;
+        width: 96%;
+        margin: 0 auto;
+        text-align: center
+    }
+
+    .z h3 {
+        color: #404040;
+        font-size: 18px;
+        padding-top: 28px;
+        margin-left: 100px;
+        margin-bottom: 7px;
+    }
+
+    .z p {
+        font-size: 12px;
+        margin-left: 100px;
+        color: #909090;
+    }
+
+    .z span {
+        font-size: 14px;
+        margin-left: 100px;
+        color: #606060;
+    }
+
+    .logo img {
+        margin-left: 20px;
+        margin-top: -86px;
+    }
+
+    .bian i {
+        float: right;
+        margin-top: 28px;
+        margin-right: 25px;
+    }
+    .fenye{
+        margin: 0 auto;
+        text-align: center;
+        height: 25px;
+    }
+</style>
+
+<body>
+    <header class="max-header layui-container">
+        <div class="main-header layui-row">
+            <div class="header-logo layui-col-lg3 layui-col-md2 layui-col-sm2 layui-col-xs3">
+                <img src="./images/jianli/chjjl-logo..png" alt="">
+            </div>
+            <ul class="header-tittle layui-col-lg6 layui-col-md6">
+                <li>
+                    <a href="">简历模板</a>
+                </li>
+                <li>
+                    <a href="">求职信</a>
+                </li>
+                <li>
+                    <a href="">简历攻略</a>
+                </li>
+                <li>
+                    <a href="">简历诊断</a>
+                </li>
+                <li>
+                    <a href="">名企内推</a>
+                </li>
+            </ul>
+            <div class="header-home layui-col-lg6 layui-col-md6 layui-col-sm5 layui-col-xs4">
+                <div class="home-icon layui-icon layui-icon-spread-left">
+                    <ul class="home-ul">
+                        <li>
+                            <a href="">简历模板</a>
+                        </li>
+                        <li>
+                            <a href="">求职信</a>
+                        </li>
+                        <li>
+                            <a href="">简历攻略</a>
+                        </li>
+                        <li>
+                            <a href="">简历诊断</a>
+                        </li>
+                        <li>
+                            <a href="">名企内推</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-app layui-col-lg3 layui-col-md4 layui-col-sm5 layui-col-xs5">
+                <div class="app-tubiao">
+                    <div class="app-earth layui-icon layui-icon-website">
+                        <div class="language">
+                            <ul>
+                                <li><a href="">中文</a></li>
+                                <li><a href="">EN</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="app-iphone layui-icon layui-icon-cellphone">
+                        <div class="app-download">
+                            <h3>扫码下载App 同步编辑</h3>
+                            <img src="images\face\erweima.png" alt="">
+                            <button style="margin: 10px 0 0 5%;" class="layui-btn layui-btn-primary">App下载</button>
+                            <button style="margin: 10px 0 0 5%;" class="layui-btn layui-btn-primary">微信版</button>
+                        </div>
+                    </div>
+                    <div class="ge">
+                        <a href="">|</a>
+                    </div>
+                </div>
+                <div class="app-button">
+                    <button class="app-dl layui-btn layui-btn-danger"><a href="">登录</a></button>
+                    <button class="layui-btn layui-btn-danger"><a href="">注册</a></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content" style="margin-top: 80px;">
+        <div class="layui-row">
+            <div class="layui-col-xs12 layui-col-md1 layui-hide-xs">
+                <div style="background: #F5F5F7; height:1px;" class="grid-demo grid-demo-bg1"></div>
+            </div>
+            <div class="layui-col-xs12 layui-col-md10">
+                <div class="grid-demo">
+                    <div class="layui-row layui-col-space30">
+                        <div class="layui-col-xs layui-col-md3 layui-hide-xs">
+                            <div style="background:#fff;height: 200px; width:300px; " class="grid-demo grid-demo-bg1">
+                                <div style=" height: 150px;">
+                                    <img src="images\face\denglu.png"
+                                        style="margin-right: 150px; height: 136px;width: 100%;">
+                                </div>
+                                <div><button style="display: block;margin: 0 auto;"
+                                        class="layui-btn layui-btn-danger layui-btn-sm">立即登录</button>
+                                </div>
+                            </div>
+                            <div style="background:#fff;height:185px; margin-top: 20px; width:300px;"
+                                class="grid-demo grid-demo-bg1">
+                                <a href="">
+                                    <blockquote style="background: #fff;height: 15px;" class="layui-elem-quote">
+                                        内推职位
+                                    </blockquote>
+                                    <i class="layui-icon layui-icon-right" style="float:right; margin-top: -37px;"></i>
+                                </a>
+                                <hr>
+                                <a href="">
+                                    <blockquote style="background: #fff;height: 15px;" class="layui-elem-quote">
+                                        领英职位
+                                    </blockquote>
+                                    <i class="layui-icon layui-icon-right" style="float:right; margin-top: -37px;"></i>
+                                </a>
+                                <hr>
+                                <a href="">
+                                    <blockquote style="background: #fff;height: 15px;" class="layui-elem-quote">
+                                        校招网申
+                                    </blockquote>
+                                    <i class="layui-icon layui-icon-right" style="float:right; margin-top: -37px;"></i>
+                                </a>
+                            </div>
+                            <div style="background:#fff;height: 320px; margin-top: 20px; width:300px;"
+                                class="grid-demo grid-demo-bg1">
+                                <p style="text-align: center;font-size: 16px;font-weight: bold;padding:12px;">手机电脑，同步管理
+                                </p>
+                                <h3 style="text-align: center;font-size: 15px;color: gray;">微信上也可以随时查看、 投递简历</h3>
+                                <img style="display: block;margin: 0 auto;margin-top: 24px;"
+                                    src="images\face\jlL.png" />
+                                <h2 style="text-align: center;font-size: 14px; color: gray;padding: 25px;">微信扫码 管理投递
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div class="layui-col-xs12 layui-col-md9">
+                            <div style="background:white;height: 1450px;">
+                                <div class="layui-col-fliud"></div>
+                                <div class="content-r">
+                                    <div class="huiyuan">
+                                        <span class="layui-badge-dot">
+                                        </span>
+                                        <a href="#">超级会员专属：2018大礼包-各行业面试经验总结，2017笔试题库，行研分析报告，素来领取</a>
+                                    </div>
+                                    <div class="zuixin">
+                                        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                                            <ul class="layui-tab-title">
+                                                <li>最新</li>
+                                                <li>热门</li>
+                                                <li>互联网</li>
+                                                <li>金融</li>
+                                                <li>咨询</li>
+                                                <li>快消</li>
+                                            </ul>
+                                            <div class="layui-tab-content" style="height: 100px;">
+                                                <div class="layui-tab-item layui-show">
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="layui-row layui-col-space15 ">
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-col-md6">
+                                                            <div class="bian grid-demo grid-demo-bg1">
+                                                                <i class="layui-icon layui-icon-rate"></i>
+                                                                <div class="z">
+                                                                    <h3>亚马逊2019校园招聘</h3>
+                                                                    <p>其它</p>
+                                                                    <span>2019-05-22开始</span>
+                                                                </div>
+                                                                <div class="logo">
+                                                                    <img src="images\face\intel.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="layui-tab-item">内容2</div>
+                                                    <div class="layui-tab-item">内容3</div>
+                                                    <div class="layui-tab-item">内容4</div>
+                                                    <div class="layui-tab-item">内容5</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="fenye layui-row layui-fliud">
+                                            <div id="demo2-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-xs layui-col-md1 layui-hide-xs">
+                            <div style="background: #F5F5F7;height: 1px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            layui.use('element', function () {
+                var $ = layui.jquery
+                    , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+                //触发事件
+                var active = {
+                    tabAdd: function () {
+                        //新增一个Tab项
+                        element.tabAdd('demo', {
+                            title: '新选项' + (Math.random() * 1000 | 0) //用于演示
+                            , content: '内容' + (Math.random() * 1000 | 0)
+                            , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                        })
+                    }
+                    , tabDelete: function (othis) {
+                        //删除指定Tab项
+                        element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                        othis.addClass('layui-btn-disabled');
+                    }
+                    , tabChange: function () {
+                        //切换到指定Tab项
+                        element.tabChange('demo', '22'); //切换到：用户管理
+                    }
+                };
+
+                $('.site-demo-active').on('click', function () {
+                    var othis = $(this), type = othis.data('type');
+                    active[type] ? active[type].call(this, othis) : '';
+                });
+
+                //Hash地址的定位
+                var layid = location.hash.replace(/^#test=/, '');
+                element.tabChange('test', layid);
+
+                element.on('tab(test)', function (elem) {
+                    location.hash = 'test=' + $(this).attr('lay-id');
+                });
+
+            });
+        </script>
+        <script>
+                layui.use(['laypage', 'layer'], function(){
+                  var laypage = layui.laypage
+                  ,layer = layui.layer;
+                  
+                  //总页数低于页码总数
+                  laypage.render({
+                    elem: 'demo0'
+                    ,count: 50 //数据总数
+                  });
+                  
+                  //总页数大于页码总数
+                  laypage.render({
+                    elem: 'demo1'
+                    ,count: 70 //数据总数
+                    ,jump: function(obj){
+                      console.log(obj)
+                    }
+                  });
+                  
+                  //自定义样式
+                  laypage.render({
+                    elem: 'demo2'
+                    ,count: 100
+                    ,theme: '#1E9FFF'
+                  });
+                  laypage.render({
+                    elem: 'demo2-1'
+                    ,count: 100
+                    ,theme: '#FF5722'
+                  });
+                  laypage.render({
+                    elem: 'demo2-2'
+                    ,count: 100
+                    ,theme: '#FFB800'
+                  });
+                  
+                  //自定义首页、尾页、上一页、下一页文本
+                  laypage.render({
+                    elem: 'demo3'
+                    ,count: 100
+                    ,first: '首页'
+                    ,last: '尾页'
+                    ,prev: '<em>←</em>'
+                    ,next: '<em>→</em>'
+                  });
+                  
+                  //不显示首页尾页
+                  laypage.render({
+                    elem: 'demo4'
+                    ,count: 100
+                    ,first: false
+                    ,last: false
+                  });
+                  
+                  //开启HASH
+                  laypage.render({
+                    elem: 'demo5'
+                    ,count: 500
+                    ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
+                    ,hash: 'fenye' //自定义hash值
+                  });
+                  
+                  //只显示上一页、下一页
+                  laypage.render({
+                    elem: 'demo6'
+                    ,count: 50
+                    ,layout: ['prev', 'next']
+                    ,jump: function(obj, first){
+                      if(!first){
+                        layer.msg('第 '+ obj.curr +' 页');
+                      }
+                    }
+                  });
+                  
+                  //完整功能
+                  laypage.render({
+                    elem: 'demo7'
+                    ,count: 100
+                    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                    ,jump: function(obj){
+                      console.log(obj)
+                    }
+                  });
+                  
+                //   //自定义排版
+                //   laypage.render({
+                //     elem: 'demo8'
+                //     ,count: 1000
+                //     ,layout: ['limit', 'prev', 'page', 'next']
+                //   });
+                //   laypage.render({
+                //     elem: 'demo9'
+                //     ,count: 1000
+                //     ,layout: ['prev', 'next', 'page']
+                //   });
+                //   laypage.render({
+                //     elem: 'demo10'
+                //     ,count: 1000
+                //     ,layout: ['page', 'count']
+                //   });
+                  
+                  //自定义每页条数的选择项
+                  laypage.render({
+                    elem: 'demo11'
+                    ,count: 1000
+                    ,limit: 100
+                    ,limits: [100, 300, 500]
+                  });
+                  laypage.render({
+                    elem: 'demo20'
+                    ,count: data.length
+                    ,jump: function(obj){
+                      //模拟渲染
+                      document.getElementById('biuuu_city_list').innerHTML = function(){
+                        var arr = []
+                        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+                        layui.each(thisData, function(index, item){
+                          arr.push('<li>'+ item +'</li>');
+                        });
+                        return arr.join('');
+                      }();
+                    }
+                  });
+                  
+                });
+                </script>
+</body>
+
+</html>
